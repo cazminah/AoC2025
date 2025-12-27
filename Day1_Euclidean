@@ -1,0 +1,29 @@
+class Safe_Dial:
+    def __init__(self):
+        self.dial_numbers = [i for i in range(100)]
+        self.dial_pointer = 50
+        self.zero_counter = 0
+    
+    def rotate(self, amount):
+        pointer_position = self.dial_pointer + amount
+        self.zero_counter += abs(pointer_position // 100)
+        self.dial_pointer = pointer_position % 100
+        return self.dial_pointer, abs(pointer_position // 100)
+
+safe_dial = Safe_Dial()
+
+
+
+with open('input.txt', 'r') as input, open('output_Euclidean.txt', 'w') as output:
+    for line in input:
+        output.write(line.removesuffix("\n"))
+        
+        direction = line[0]
+        amount = int(line[1:])
+
+        if direction == "L":
+            output.write(f"{safe_dial.rotate(-amount)}\n")
+        elif direction == "R":
+            output.write(f"{safe_dial.rotate(amount)}\n")
+
+    output.write(f"zero counter: {safe_dial.zero_counter}")
