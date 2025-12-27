@@ -12,8 +12,6 @@ class Safe_Dial:
 
 safe_dial = Safe_Dial()
 
-
-
 with open('input.txt', 'r') as input, open('output_Euclidean.txt', 'w') as output:
     for line in input:
         output.write(line.removesuffix("\n"))
